@@ -8,17 +8,19 @@
 }
 
 .home {
+    padding-top: 24px;
 
     &__container {
         @include container();
+        padding-bottom: 40px;
         background: linear-gradient(
             135deg,
             #1f4d3f 0%,
             #123f4a 50%,
             #0f1720 100%
         );
-
         border-radius: 12px;
+        overflow: hidden;
 
         &__logo {
             display: block;
@@ -29,16 +31,16 @@
         }
 
         &__list {
-            list-style: none;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 32px;
+            list-style: none;
 
             &__img {
-
                 width: 100%;
                 max-width: 500px;
+                flex-shrink: 0;
 
                 img {
                     width: 100%;
@@ -50,16 +52,17 @@
                 flex: 1;
 
                 &__text {
-
                     p {
                         text-align: center;
                         font-size: 18px;
+                        line-height: 1.5;
                         color: variaveis.$TextColor;
                         margin-bottom: 12px;
                     }
 
                     .critic_review {
                         text-align: right;
+                        color: variaveis.$TextSecondaryColor;
                     }
 
                     a {
@@ -76,13 +79,17 @@
                 }
 
                 &__trailer {
-
                     display: flex;
                     justify-content: center;
 
                     img {
                         width: 240px;
                         margin-top: 50px;
+                        transition: transform .3s ease;
+
+                        &:hover {
+                            transform: scale(1.05);
+                        }
                     }
                 }
             }
@@ -91,10 +98,16 @@
 }
 
 @media (max-width: 768px) {
-
     .home {
+        padding-top: 16px;
 
         &__container {
+            padding-bottom: 32px;
+
+            &__logo {
+                max-width: 400px;
+                padding: 32px 0;
+            }
 
             &__list {
                 flex-direction: column;
@@ -103,11 +116,23 @@
                 &__img {
                     max-width: 400px;
                 }
-            }
 
-            &__logo {
-                max-width: 400px;
-                padding: 32px 0;
+                &__block {
+                    width: 100%;
+
+                    &__text {
+                        .critic_review {
+                            text-align: center;
+                        }
+                    }
+
+                    &__trailer {
+                        img {
+                            width: 200px;
+                            margin-top: 32px;
+                        }
+                    }
+                }
             }
         }
     }

@@ -1,42 +1,44 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('[data-tab-button]')
-    const questions = document.querySelectorAll('[data-faq-question]')
+    const buttons = document.querySelectorAll('[data-tab-button]');
+    const questions = document.querySelectorAll('[data-faq-question]');
 
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', function (botao) {
-            const TargetTab = botao.target.dataset.tabButton;
-            const tab = document.querySelector(`[data-tab-id=${TargetTab}]`);
-            HideAllTabs();
+    buttons.forEach(function (button) {
+        button.addEventListener('click', function () {
+            const targetTab = button.dataset.tabButton;
+            const tab = document.querySelector(`[data-tab-id="${targetTab}"]`);
+
+            if (!tab) {
+                return;
+            }
+
+            hideAllTabs();
+            removeActiveButtons();
+
             tab.classList.add('info__container__content__box--is-active');
-            removeActiveButton ();
-            botao.target.classList.add('info__container__tabs__button--is-active')
-        })
-    }
+            button.classList.add('info__container__tabs__button--is-active');
+        });
+    });
 
-    
-    for (let i = 0; i < questions.length; i++) {
-        questions[i].addEventListener('click', openNclose);
-    }
-})
+    questions.forEach(function (question) {
+        question.addEventListener('click', function () {
+            const questionItem = question.parentElement;
+            questionItem.classList.toggle('faq__questions__item--is-open');
+        });
+    });
+});
 
-function openNclose (elemento) {
-    const classe = 'faq__questions__item--is-open';
-    const elementoPai = elemento.target.parentNode;
+function hideAllTabs() {
+    const tabs = document.querySelectorAll('[data-tab-id]');
 
-    elementoPai.classList.toggle(classe);
+    tabs.forEach(function (tab) {
+        tab.classList.remove('info__container__content__box--is-active');
+    });
 }
 
-function removeActiveButton () {
-    const buttons = document.querySelectorAll('[data-tab-button]')
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove('info__container__tabs__button--is-active')
-    }
-}
+function removeActiveButtons() {
+    const buttons = document.querySelectorAll('[data-tab-button]');
 
-function HideAllTabs() {
-    const tabsContainer = document.querySelectorAll('[data-tab-id]')
-
-    for (let i = 0; i < tabsContainer.length; i++) {
-    tabsContainer[i].classList.remove('info__container__content__box--is-active')
-    }
+    buttons.forEach(function (button) {
+        button.classList.remove('info__container__tabs__button--is-active');
+    });
 }

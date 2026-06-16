@@ -1,23 +1,11 @@
 @use 'variaveis';
 
-@mixin container() {
-    width: 1024px;
-}
-
-
 .faq {
+    width: 100%;
+    max-width: 1024px;
+    margin: 15vh auto 0;
+    padding: 20px 16px;
     font-size: 20px;
-    @include container();
-    margin-top: 15vh;
-    padding: 20px;
-
-    
-    @media (max-width: 768px) {
-        width: 768px;
-    }
-
-
-    
 
     h2 {
         text-align: center;
@@ -27,16 +15,22 @@
 
     &__questions {
         color: variaveis.$TextColor;
+        list-style: none;
+        padding: 0;
+
         &__item {
             background-color: variaveis.$bgSecondaryColor;
-            list-style: none;
             margin-bottom: 24px;
+            border-radius: 8px;
+            overflow: hidden;
 
             &__question {
-                padding: 24px;
+                padding: 24px 64px 24px 24px;
                 display: block;
                 cursor: pointer;
                 position: relative;
+                font-weight: bold;
+                user-select: none;
 
                 &::after {
                     content: '+';
@@ -47,26 +41,42 @@
                     display: flex;
                     align-items: center;
                     font-size: 40px;
+                    line-height: 1;
                 }
             }
 
             &__answer {
-                height: 0;
+                max-height: 0;
                 overflow: hidden;
                 padding: 0 24px;
-                transition: height, .5s ease;
+                line-height: 1.5;
+                transition: max-height .5s ease, padding .5s ease;
             }
-            
+
             &--is-open {
                 .faq__questions__item__question::after {
                     content: '-';
                 }
 
                 .faq__questions__item__answer {
-                    height: auto;
-                    padding-top: 24px;
+                    max-height: 500px;
+                    padding-top: 0;
                     padding-bottom: 24px;
-                    transition: height, .5s ease;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .faq {
+        margin-top: 64px;
+        font-size: 18px;
+
+        &__questions {
+            &__item {
+                &__question {
+                    padding: 20px 56px 20px 20px;
                 }
             }
         }
