@@ -1,0 +1,114 @@
+@use 'variaveis';
+
+@mixin container() {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.home {
+
+    &__container {
+        @include container();
+        background: linear-gradient(
+            135deg,
+            #1f4d3f 0%,
+            #123f4a 50%,
+            #0f1720 100%
+        );
+
+        border-radius: 12px;
+
+        &__logo {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+
+        &__list {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+
+            &__img {
+
+                width: 100%;
+                max-width: 500px;
+
+                img {
+                    width: 100%;
+                    display: block;
+                }
+            }
+
+            &__block {
+                flex: 1;
+
+                &__text {
+
+                    p {
+                        text-align: center;
+                        font-size: 18px;
+                        color: variaveis.$TextColor;
+                        margin-bottom: 12px;
+                    }
+
+                    .critic_review {
+                        text-align: right;
+                    }
+
+                    a {
+                        display: flex;
+                        justify-content: center;
+                        gap: 12px;
+                        text-decoration: none;
+
+                        img {
+                            width: 50px;
+                            margin-top: 15px;
+                        }
+                    }
+                }
+
+                &__trailer {
+
+                    display: flex;
+                    justify-content: center;
+
+                    img {
+                        width: 240px;
+                        margin-top: 50px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+
+    .home {
+
+        &__container {
+
+            &__list {
+                flex-direction: column;
+                text-align: center;
+
+                &__img {
+                    max-width: 400px;
+                }
+            }
+
+            &__logo {
+                max-width: 400px;
+                padding: 32px 0;
+            }
+        }
+    }
+}

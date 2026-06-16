@@ -1,0 +1,48 @@
+@use 'variaveis';
+
+.gallery {
+
+    &__container {
+        width: 100%;
+        max-width: 1424px;
+        display: block;
+
+        &__list-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            list-style: none;
+
+            img {
+                transition: all .3s ease;
+
+                &:hover {
+                    transform: scale(1.05);
+                    filter: brightness(1.1);
+                }
+            }
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 34px;
+            color: variaveis.$TextColor;
+            margin: 100px 0 20px;
+        }
+
+        img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+    }
+
+    p {
+        font-size: 30px;
+        text-align: center;
+        width: 50%;
+        color: variaveis.$TextColor;
+    }
+}
