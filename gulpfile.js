@@ -15,11 +15,11 @@ function styles() {
         .pipe(gulp.dest('./dist/css'));
 }
 
-function images() {
-    return gulp.src('./src/images/**/*')
-        .pipe(imagemin())
-        .pipe(gulp.dest('./dist/images'));
-}
+// function images() {
+//     return gulp.src('./src/images/**/*')
+//         .pipe(imagemin())
+//         .pipe(gulp.dest('./dist/images'));
+// }
 
 function html() {
     return gulp.src('./*.html')
@@ -28,7 +28,6 @@ function html() {
 
 exports.default = gulp.parallel(
     styles,
-    images,
     scripts,
     html
 );
